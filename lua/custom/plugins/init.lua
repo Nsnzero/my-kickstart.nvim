@@ -12,6 +12,12 @@ vim.g.clipboard = {
   cache_enabled = 0,
 }
 
+vim.opt.ttyfast = true
+vim.opt.scrolljump = 1
+vim.opt.signcolumn = 'yes'
+vim.opt.ambw = 'single'
+vim.opt.termguicolors = true
+
 return {
   {
     'lewis6991/gitsigns.nvim',
@@ -84,5 +90,43 @@ return {
     lazy = false, -- or ft = 'typst'
     version = '1.*',
     opts = { dependencies_bin = { tinymist = 'tinymist' } }, -- lazy.nvim will implicitly calls `setup {}`
+  },
+  {
+    'aserowy/tmux.nvim',
+    lazy = false,
+    config = function()
+      require('tmux').setup {
+        copy_sync = {
+          -- enables copy sync. If set to false, copy_sync logic will be disabled
+          enable = false,
+        },
+        navigation = {
+          -- enables default keybindings (mapped to <ctrl-h,j,k,l>)
+          enable_default_keybindings = true,
+        },
+        resize = {
+          -- enables default keybindings (mapped to <alt-h,j,k,l>)
+          enable_default_keybindings = true,
+        },
+      }
+    end,
+  },
+  {
+    'christoomey/vim-tmux-navigator',
+    cmd = {
+      'TmuxNavigateLeft',
+      'TmuxNavigateDown',
+      'TmuxNavigateUp',
+      'TmuxNavigateRight',
+      'TmuxNavigatePrevious',
+      'TmuxNavigatorProcessList',
+    },
+    keys = {
+      { '<c-h>', '<cmd><C-U>TmuxNavigateLeft<cr>' },
+      { '<c-j>', '<cmd><C-U>TmuxNavigateDown<cr>' },
+      { '<c-k>', '<cmd><C-U>TmuxNavigateUp<cr>' },
+      { '<c-l>', '<cmd><C-U>TmuxNavigateRight<cr>' },
+      { '<c-\\>', '<cmd><C-U>TmuxNavigatePrevious<cr>' },
+    },
   },
 }
