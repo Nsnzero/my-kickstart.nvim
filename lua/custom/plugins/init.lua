@@ -52,15 +52,6 @@ return {
       vim.cmd [[colorscheme fluoromachine]]
     end,
   },
-  {
-    'lervag/vimtex',
-    lazy = false, -- we don't want to lazy load VimTeX
-    -- tag = "v2.15", -- uncomment to pin to a specific release
-    init = function()
-      -- VimTeX configuration goes here, e.g.
-      vim.g.vimtex_view_method = 'zathura'
-    end,
-  },
   -- Disable LSP formatting for TypeScript servers to avoid auto-formatting
   -- provided by the language server (tsserver / ts_ls). This keeps the
   -- formatting behavior under Conform or other formatters instead.
@@ -89,7 +80,7 @@ return {
     'chomosuke/typst-preview.nvim',
     lazy = false, -- or ft = 'typst'
     version = '1.*',
-    opts = { dependencies_bin = { tinymist = 'tinymist' } }, -- lazy.nvim will implicitly calls `setup {}`
+    opts = {}, -- lazy.nvim will implicitly calls `setup {}`
   },
   {
     'aserowy/tmux.nvim',
